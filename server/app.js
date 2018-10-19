@@ -1,16 +1,22 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const passport = require('passport');
 
-const { notFound, errorHandler } = require('./middlewares')
+require('dotenv').config();
 
-var app = express();
+const { notFound, errorHandler } = require('./middlewares');
+
+const auth = require('./auth');
+
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(passport.initialize());
 
 // our routes go here...
 app.get('/', (req, res) => {
@@ -18,6 +24,8 @@ app.get('/', (req, res) => {
         message: 'Welcome to Community API 🌈 💙'
     });
 });
+
+app.use('/auth', auth);
 
 app.use(notFound);
 app.use(errorHandler);
