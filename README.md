@@ -1,7 +1,18 @@
 # vue-forum
 This is the project repository.
 
-### client
-This is the vue.js frontend.
-### server
-This is the express backend.
+## Development Setup
+
+### Client
+```sh
+cd client
+npm install
+npm run serve
+```
+
+### Server
+```sh
+cd server
+npm install
+npm run dev
+```
