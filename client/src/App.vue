@@ -7,11 +7,16 @@
 
 <script>
 import AppNav from '@/components/AppNav'
+import { mapActions } from 'vuex';
 
 export default {
     components: {
         AppNav,
     },
+    mounted() {
+      this.login(localStorage.token);
+    },
+    methods: mapActions(['login']),
 }
 
 </script>

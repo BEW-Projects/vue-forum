@@ -16,13 +16,12 @@
 export default {
   name: 'home',
   computed: {
-      getLoginUrl() {
-        if(window.location.hostname === 'localhost') {
-            return 'http://localhost:3000/auth/google';
-        } else {
-            return 'https://community-ec-api.now.sh/auth/google';
-        }
+    getLoginUrl() {
+      if (window.location.hostname === 'localhost') {
+        return 'http://localhost:3000/auth/google';
       }
-  }
+      return 'https://community-ec-api.now.sh/auth/google';
+    },
+  },
 };
 </script>

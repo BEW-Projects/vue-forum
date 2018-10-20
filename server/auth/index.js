@@ -1,11 +1,24 @@
 const passport = require('passport');
 const express = require('express');
-
-const { create } = require('./utils');
+require('../passport/google');
+const {
+    create
+} = require('./utils');
 
 const router = express.Router();
 
-require('../passport/google');
+router.get('/isAdmin', async (req, res) => {
+    if (req.user) {
+        if (req.user.role_id === 3) {
+          res.json({
+              isAdmin: true
+          })
+        }
+    res.json({
+        isAdmin: false
+    })
+  }
+});
 
 router.get('/google',
     passport.authenticate('google', {

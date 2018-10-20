@@ -24,6 +24,10 @@ passport.use(new GoogleStrategy({
                 googleUser.role_id = user.role_id;
                 user = await users.update(user.id, googleUser);
             } else {
+                const admins = await users.findAdmins();
+                if (admins.length == 0) {
+                  googleUser.role_id = 3;
+                }
                 user = await users.insert(googleUser);
             }
             return cb(null, user);
